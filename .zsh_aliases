@@ -1,0 +1,210 @@
+alias repo='cd ~/git'
+alias a='cd ~/git'
+alias l='ls -lah'
+alias la='ls -lAh'
+alias ll='ls -lah'
+alias ls='ls --color=tty'
+alias lsa='ls -lah'
+alias c='bat'
+alias maj='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
+alias kc='kubectx'
+alias kn='kubens'
+alias kdp='kdelp --force --grace-period 0'
+alias kw='watch kubectl get pods'
+alias cherche='grep -rnw "/home/florian" --exclude-dir={.gnupg,snap,.gvm,.bash-git-prompt,.httpie,.tmux,.cache,.krew,.dbus,.docker,.local,.mozilla,.oh-my-zsh,.fzf,.pgadmin,.vscode,.pki,.gnome,zsh-syntax-highlighting} -e'
+alias tue='pkill kafka-consumer'
+alias repair='sudo bash /usr/local/sbin/redsocks-iptables unset && sudo service redsocks restart && sudo service cntlm restart'
+
+################# Tolling Proxy #################
+alias s='cd ~/git/test.obu.simulator.go'
+alias t='cd ~/git/test.automated'
+alias urn='~/git/test.utils/URNdecode/URNdecoder'
+alias crypt='~/git/test.utils/EncryptDecoder/encryptdecoder'
+alias encoder='python3 ~/git/tools.asn1.converter/convertASN1.py encode ~/git/tools.asn1.converter/definitions.asn CtppObuMessage'
+alias obu='bash /home/florian/git/test.utils/OBUscripts/obu-simulator-script.sh'
+alias fw-up='bash /home/florian/git/test.utils/OBUscripts/firmware-update-scripts.sh'
+alias fw-dl='bash /home/florian/git/test.utils/OBUscripts/firmware-download-scripts.sh'
+alias kmongo='kubectl exec -it -n tolling-proxy-test mongo-access bash'
+alias debug='kubectl apply -f ~/git/test.automated/debug/app-debug.yaml'
+alias debugg='kubectl run test-debug --image=harbor.registry.prod.cdsf.io/ctp/cloud/continental/ctp/test-automated:latest --restart=Never -n ctp-test --command sleep infinity'
+# alias build-debug='make -C /home/florian/git/test.automated debug'
+alias khttp='kubectl run -it --rm -n tolling-proxy-test http-access --image=clue/httpie --restart=Never --command bash'
+alias cognito='cd ~/git/services.identity-provider/utils/users-groups-import && bash delete-groups.sh ****** && bash import-groups.sh fixtures/dev/groups.json && bash import-user-groups.sh fixtures/dev/user-groups.json && cd -'
+alias json2proto='~/git/tools.dev.proto/json2proto/target/json2proto -m location'
+alias kce='bash /home/florian/git/test.utils/KafkaScripts/kafka-ce-script.sh tolling Xoe+fNXO1hma820LyQAJjAt+i4P/LL7jpnuGGWLb6sA='
+alias kcr='bash /home/florian/git/test.utils/KafkaScripts/kafka-raw-script.sh tolling Xoe+fNXO1hma820LyQAJjAt+i4P/LL7jpnuGGWLb6sA='
+alias setup='VARS_FOLDER="data/vars" && venom run test-suites/setup.yml --var-from-file ${VARS_FOLDER}/vars.yaml --var-from-file ${VARS_FOLDER}/vars-secret.yaml'
+
+##### Logs #####
+alias obu2pf='make -C /home/florian/git/pipelines.obucom.obu2pf logs' # TAIL=3 à la fin pour les 3 derniers messages
+alias pf2obu='make -C /home/florian/git/pipelines.obucom.pf2obu logs'
+alias m2k='make -C /home/florian/git/pipelines.connector.mqtt2kafka logs'
+alias state='make -C /home/florian/git/pipelines.state-handler logs'
+alias eventp='make -C /home/florian/git/pipelines.event-handler logs'
+alias firmwarep='make -C /home/florian/git/pipelines.firmwares.handler logs'
+alias mapmatch='make -C /home/florian/git/pipelines.mapmatcher logs'
+alias relaygitd='make -C /home/florian/git/pipelines.gitd-relay logs'
+alias kpip='make -C /home/florian/git/pipelines.kpi.device-activity-tracker logs'
+alias dispatcher='make -C /home/florian/git/pipelines.dispatcher logs'
+alias relaykas='make -C /home/florian/git/pipelines.kas-relay logs'
+alias k2p='make -C /home/florian/git/pipelines.connector.kafka2postgres logs'
+alias sink='make -C /home/florian/git/pipelines.positions.sink2service logs'
+alias standardizer='make -C /home/florian/git/pipelines.vtr.standardizer.obu5gen logs'
+alias astcs='make -C /home/florian/git/pipelines.compute.charge-reports logs'
+alias lorud='make -C /home/florian/git/pipelines.compute.lorud.report logs'
+alias evtperso='make -C /home/florian/git/pipelines.perso.events.handler logs'
+
+# alias sessionbuilder='make -C /home/florian/git/pipelines.session-builder logs'
+alias events='make -C /home/florian/git/services.events logs'
+alias registry='make -C /home/florian/git/services.device.registry logs'
+alias request='make -C /home/florian/git/services.request logs'
+alias firmwares='make -C /home/florian/git/services.firmwares.catalog logs'
+alias kpis='make -C /home/florian/git/services.kpi logs'
+alias haproxy='make -C /home/florian/git/load-balancer logs'
+alias vtrs='make -C /home/florian/git/services.obu.tracker logs'
+alias permission='make -C /home/florian/git/services.permissions logs'
+alias customer='make -C /home/florian/git/services.customers logs'
+alias auth='make -C /home/florian/git/services.auth.users logs'
+alias mqttauth='make -C /home/florian/git/services.auth.mqtt logs'
+alias context='make -C /home/florian/git/services.contextdata logs'
+alias position='make -C /home/florian/git/services.positions logs'
+
+alias mockgitd='make -C /home/florian/git/test.mock.gitd-pilot logs'
+alias mockas='make -C /home/florian/git/mock.kas-backend logs'
+alias mocktsp='make -C /home/florian/git/mock.tsp-backend logs'
+
+alias logs='echo "\e[1;96mPipelines/Handlers (Kafka read/write)\e[0m
+ \e[96mobu2pf       (obu2pf connector)
+ pf2obu       (obu2pf connector)
+ m2k          (mqtt2kafka)
+ state        (state handler)
+ eventp       (event handler)
+ firmwarep    (firmwares handler)
+ mapmatch     (map-matching process)
+ relaygitd    (GITD-relay)
+ kpip         (device activity tracker)
+ dispatcher   (Dispatcher)
+ relaykas     (KAS-relay)
+ k2p          (kafka2postgres)
+ sink         (position sink2service)
+ astcs        (ASTCS compute charge)
+ lorud        (LORUD compute charge)
+ standardizer (vtr standardizer for obu5gen)
+ evtperso     (event-perso-handler)\e[0m
+
+\e[1;95mServices (REST call)\e[0m
+ \e[95mregistry     (device registry)
+ request      (service URN/id)
+ events       (event service)
+ firmwares    (firmwares catalog)
+ haproxy      (load-balancer)
+ vtrs         (obu tracker)
+ customer     (customer service)
+ auth         (user authentication service)
+ mqttauth     (mqtt authentication service)
+ context      (context-data service)
+ position     (position service)\e[0m
+
+\e[1;94mTests\e[0m
+ \e[94mmocktsp      ([TSP] mock server)\e[0m
+
+"'
+
+################# Functions #################
+
+topics() {
+    # pod=$(kubectl get pods -n ctp-test -l run=kafka-util --no-headers | awk '{print $1}')
+    pod=$(kubectl get pods -n ***** -l run=kafka-util -o jsonpath='{.items[0].metadata.name}')
+    brokers=$(kubectl get configmap kafka-cluster -n ctp -o jsonpath='{.data.BOOTSTRAP_BROKERS}')
+    kubectl cp /home/florian/Documents/kafka-authent/config $pod:/opt/kafka/bin/.config -n ctp-test
+    kubectl exec -it -n ctp-test $pod -- kafka-topics.sh --bootstrap-server $brokers --command-config /opt/kafka/bin/.config --list
+}
+
+produce() {
+    if [[ $# -eq 0 ]] || [[ $# -eq 1 ]] ; then
+        echo "Missing option(s)\nUsage : $ produce topic /path/to/message.json"
+        topics
+        return 0
+    else
+        pod=$(kubectl get pods -n ctp-test -l run=kafka-util -o jsonpath='{.items[0].metadata.name}')
+        brokers=$(kubectl get configmap kafka-cluster -n ***** -o jsonpath='{.data.BOOTSTRAP_BROKERS}')
+        kubectl cp /home/florian/Documents/kafka-authent/config $pod:/opt/kafka/bin/.config -n ctp-test
+        tr -d " \t\n\r" < $2 > /tmp/generatedproducemessage
+        kubectl exec -i -n ctp-test $pod -- kafka-console-producer.sh --bootstrap-server $brokers --producer.config /opt/kafka/bin/.config --topic $1 < /tmp/generatedproducemessage
+    fi
+}
+
+consume() {
+    if [[ $# -eq 0 ]] ; then
+        echo "Missing option\nUsage : $ consume topic or consume topic -p"
+        return 0
+    else
+        pod=$(kubectl get pods -n **** -l run=kafka-util -o jsonpath='{.items[0].metadata.name}')
+        brokers=$(kubectl get configmap kafka-cluster -n ctp -o jsonpath='{.data.BOOTSTRAP_BROKERS}')
+        kubectl cp /home/florian/Documents/kafka-authent/config $pod:/opt/kafka/bin/.config -n ctp-test
+        kubectl exec -it -n ctp-test $pod -- kafka-console-consumer.sh --consumer.config /opt/kafka/bin/.config --bootstrap-server $brokers --topic $1
+        # for several topics, replace --topic by --whitelist 'tolling.locations|raw.vtrs'
+    fi
+}
+
+encoderEvent() {
+    cat $1 | m4 -DTS_TEMPLATE=$(date +%s) > /tmp/generatedevent
+    python3 ~/git/tools.asn1.converter/convertASN1.py encode ~/git/tools.asn1.converter/definitions.asn CtppObuMessage /tmp/generatedevent
+}
+
+decoder() {
+    echo "$1" > /tmp/asn1todecode && python3 ~/git/tools.asn1.converter/convertASN1.py decode ~/git/tools.asn1.converter/definitions.asn CtppObuMessage /tmp/asn1todecode && rm -f /tmp/asn1todecode
+}
+
+rawdecoder() {
+    hexAsn1=$( echo "$1" | base64 --decode | xxd -ps -c 10000000000 )
+    decoder $hexAsn1
+}
+
+
+grpc() {
+    if [[ $# -eq 0 ]] ; then
+        echo "Example :\n grpc devices *******"
+    else
+        pod=$(kubectl get pods -n ****** -l run=kafka-util --no-headers | awk '{print $1}')
+
+        if [ $1 = "devices" ] ;then
+            grpcResponse=$(kubectl exec -it $pod -n ****** -- spos devices get -s $2 -e $3 -t $4 -u ******) #| sed '1,2d' | jq .
+            retVal=$?
+        elif [ $1 = "positions" ] ;then
+            grpcResponse=$(kubectl exec -it $pod -n ****** -- spos positions get -s $2 -e $3 -t $4 -d $5 -u *******) #| sed '1,2d' | jq .
+            retVal=$?
+        else
+            echo "Bad environment"
+            return 0
+        fi
+
+        # if error, display it
+        if [ $retVal -ne 0 ]; then
+            echo $grpcResponse
+        # if no error, only display json
+        else
+            echo $grpcResponse | sed '1,2d' | jq .
+        fi
+
+    fi
+}
+
+#Elactic search
+elastic() {
+    if [ $1 = "dev" ] ;then
+        url='******'
+    elif [ $1 = "int" ] ;then
+        url='******'
+    else
+        echo "Bad environment"
+        return 0
+    fi
+    kubectl run -it --rm -n ***** http-access-alias --image=byrnedo/alpine-curl --restart=Never -- -i -X GET $url -H "Content-type:application/json" -d "{ \"from\" : 0, \"size\": $2, \"sort\" : [ { \"date\" : \"desc\" } ] }"
+}
+
+
+adfs() {
+    export AWS_PROFILE=$1 && aws-adfs login --region **** --adfs-host **** --session-duration 14400 --profile $1
+}
+
