@@ -1,0 +1,152 @@
+k9s:
+  refreshRate: 2
+  headless: false
+  readOnly: false
+  noIcons: false
+  logger:
+    tail: 100
+    buffer: 5000
+    sinceSeconds: -1
+    fullScreenLogs: false
+    textWrap: false
+    showTime: false
+  currentContext: int-GTP
+  currentCluster: k8s-integration-eu-central-1
+  clusters:
+    apigw-integration.eu-central-1.eksctl.io:
+      namespace:
+        active: ctp-haproxy
+        favorites:
+        - ctp-haproxy
+        - default
+      view:
+        active: po ctp-haproxy
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    apigw-validation.eu-central-1.eksctl.io:
+      namespace:
+        active: ctp-ftc-haproxy
+        favorites:
+        - ctp-ftc-haproxy
+        - default
+      view:
+        active: cm
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:eu-central-1:639387749586:cluster/GITD:
+      namespace:
+        active: tolling-proxy
+        favorites:
+        - tolling-proxy-kafka
+        - tolling-proxy
+        - default
+      view:
+        active: po tolling-proxy
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    arn:aws:eks:eu-central-1:989155814854:cluster/tolling-eks:
+      namespace:
+        active: tolling-proxy-test
+        favorites:
+        - tolling-proxy-kafka
+        - tolling-proxy-test
+        - all
+        - tolling-proxy
+        - default
+      view:
+        active: po tolling-proxy-test
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    k8s-integration-eu-central-1:
+      namespace:
+        active: ctp
+        favorites:
+        - ctp-test
+        - ctp
+        - default
+      view:
+        active: po
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    k8s-stable.foo.ehorizon.continental.cloud:
+      namespace:
+        active: tolling-proxy
+        favorites:
+        - tolling-proxy-kafka
+        - all
+        - tolling-proxy-test
+        - tolling-proxy
+        - default
+      view:
+        active: po tolling-proxy-test
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    k8s-validation-eu-central-1:
+      namespace:
+        active: ctp-ftc
+        favorites:
+        - ctp-ftc
+        - ctp-test
+        - all
+        - ctp
+        - default
+      view:
+        active: po ctp-test
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+  thresholds:
+    cpu:
+      critical: 90
+      warn: 70
+    memory:
+      critical: 90
+      warn: 70
